@@ -9,6 +9,7 @@ namespace Assets.Scripts
 
         private bool _isActive = false;
 
+        private bool _freeze => transform.position.y <= 1;
 
 
         #endregion
@@ -28,7 +29,7 @@ namespace Assets.Scripts
 
         private IEnumerator Start()
         {
-            while (isActiveAndEnabled && transform.position.y > 1)
+            while (isActiveAndEnabled && !_freeze)
             {
                 _isActive = true;
                 yield return new WaitForSeconds(.5f);
@@ -70,7 +71,7 @@ namespace Assets.Scripts
 
         private void SwipeRight()
         {
-            if(transform.position.x < 10)
+            if(transform.position.x < 10 && !_freeze)
                 transform.position += Vector3.right;
         }
 
@@ -86,7 +87,7 @@ namespace Assets.Scripts
 
         private void SwipeLeft()
         {
-            if (transform.position.x > 1)
+            if (transform.position.x > 1 && !_freeze)
                 transform.position += Vector3.left;
         }
 
