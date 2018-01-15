@@ -1,6 +1,6 @@
 # ProjectX
 
-Making a tetris clone with multiplayer functionality like tetrinet
+Making a tetris clone with multiplayer functionality like tetrinet for mobile devices.
 
 ## Tetrinet
 
