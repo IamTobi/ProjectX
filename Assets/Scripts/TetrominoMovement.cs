@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets.Scripts
 {
@@ -28,8 +26,6 @@ namespace Assets.Scripts
 
         private IEnumerator Start()
         {
-
-
             while (isActiveAndEnabled && transform.position.y > 1)
             {
                 _isActive = true;
@@ -46,9 +42,7 @@ namespace Assets.Scripts
             EventManager.StartListening(Constants.SwipeEvents.SwipeDown, SwipeUp);
             EventManager.StartListening(Constants.SwipeEvents.SwipeUp, SwipeDown);
         }
-
-
-
+        
         private void OnDisable()
         {
             EventManager.StopListening(Constants.SwipeEvents.SwipeRight, SwipeRight);
