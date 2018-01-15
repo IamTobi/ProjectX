@@ -9,6 +9,8 @@ namespace Assets.Scripts
 
         private bool _isActive = false;
 
+
+
         #endregion
 
         #region public properties
@@ -29,7 +31,7 @@ namespace Assets.Scripts
             while (isActiveAndEnabled && transform.position.y > 1)
             {
                 _isActive = true;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(.5f);
                 MoveBlockDown();
             }
             _isActive = false;
