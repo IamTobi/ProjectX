@@ -22,6 +22,5 @@ The last player still able to place pieces in their field is the winner.
 
 Depending on the server used, some alternative rules may be available.
 
-pure: special blocks are disabled, providing gameplay similar to traditional multiplayer Tetris.
-7tetris: the first player to make seven Tetris is the winner.
+[More on Wikipedia](https://en.wikipedia.org/wiki/TetriNET)
 
