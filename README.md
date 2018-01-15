@@ -24,3 +24,8 @@ Depending on the server used, some alternative rules may be available.
 
 [More on Wikipedia](https://en.wikipedia.org/wiki/TetriNET)
 
+## Screenshots
+ 
+![Tetrinet Gameboard](https://upload.wikimedia.org/wikipedia/commons/0/05/Tetrinet.png "Logo Title Text 1")
+
+
