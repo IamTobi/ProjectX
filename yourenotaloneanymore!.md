@@ -9,3 +9,6 @@ Aber weiter komme ich heute wohl nicht mehr, gleich gibt´s noch eine Folge der 
 Liebe Grüße :)
 
 (und wehe, dieses Repository geht irgendwann viral, weil das Spiel der megahammer wird, und ich verewige mich grade unwissend :D)
+
+Hallo!
+Es funktioniert juhuuu :D :D :D
