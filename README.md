@@ -2,7 +2,7 @@
 
 Making a tetris clone with multiplayer functionality like tetrinet for mobile devices.
 
-## Tetrinet
+## About Tetrinet
 
 TetriNET plays like standard multiplayer Tetris but with a twist: clearing rows will cause special blocks to appear in the player's field. If a line containing a special block is cleared, then that special block is added to the player's inventory. Clearing multiple lines at once increases the number of special blocks received.
 
@@ -22,10 +22,10 @@ The last player still able to place pieces in their field is the winner.
 
 Depending on the server used, some alternative rules may be available.
 
-[More on Wikipedia](https://en.wikipedia.org/wiki/TetriNET)
+[Wikipedia](https://en.wikipedia.org/wiki/TetriNET)
 
 ## Screenshots
  
-![Tetrinet Gameboard](https://upload.wikimedia.org/wikipedia/commons/0/05/Tetrinet.png "Logo Title Text 1")
+![Tetrinet Gameboard](https://upload.wikimedia.org/wikipedia/commons/0/05/Tetrinet.png)
 
 
