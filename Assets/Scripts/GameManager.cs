@@ -6,6 +6,7 @@ namespace Assets.Scripts
     /// GameManager used for Initialisation and keeping Track of score and positions
     /// </summary>
     public class GameManager : MonoBehaviour {
+        
 
         // Use this for initialization
         void Start () {

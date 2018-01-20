@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,14 @@ namespace Assets.Scripts
 {
     public class Tetromino : MonoBehaviour
     {
+        private enum MovementDirection
+        {
+            Left,
+            Up,
+            Right,
+            Down
+        }
+
 
         #region private properties
 
@@ -70,6 +79,9 @@ namespace Assets.Scripts
         private void SwipeRight()
         {
             transform.position += Vector3.right;
+
+            ControlPosition(MovementDirection.Right);
+            
         }
 
         private void SwipeDown()
@@ -85,18 +97,43 @@ namespace Assets.Scripts
         private void SwipeLeft()
         {
             transform.position += Vector3.left;
+            ControlPosition(MovementDirection.Left);
         }
 
         #endregion
 
 
-        #region helpers
 
-        private void MoveBlockDown()
+        private void ControlPosition(MovementDirection lastMovement)
         {
-            transform.position += Vector3.down;
+            if (CheckIsValidPosition()) return;
+
+            switch (lastMovement)
+            {
+                case MovementDirection.Right:
+                    transform.position += Vector3.left;
+                    break;
+                case MovementDirection.Left:
+                    transform.position += Vector3.right;
+                    break;
+                default:
+                    break;
+            }
         }
 
-        #endregion
+        private bool CheckIsValidPosition()
+        {
+            foreach (Transform mino in transform)
+            {
+                var pos = GridController.Instance.Round(mino.position);
+
+                if(!GridController.Instance.CheckIsInsideGrid(pos))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }
