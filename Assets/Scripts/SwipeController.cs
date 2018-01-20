@@ -62,13 +62,13 @@ namespace Assets.Scripts
             if (_currentSwipe.y > 0 && _currentSwipe.x > -0.5f && _currentSwipe.x < 0.5f)
             {
                 Debug.Log("up swipe");
-                EventManager.TriggerEvent(Constants.SwipeEvents.SwipeUp);
+                EventManager.TriggerEvent(Constants.SwipeEvents.SwipeDown);
             }
             // swipe down
             if (_currentSwipe.y < 0 && _currentSwipe.x > -0.5f && _currentSwipe.x < 0.5f)
             {
                 Debug.Log("down swipe");
-                EventManager.TriggerEvent(Constants.SwipeEvents.SwipeDown);
+                EventManager.TriggerEvent(Constants.SwipeEvents.SwipeUp);
             }
             // swipe left
             if (_currentSwipe.x < 0 && _currentSwipe.y > -0.5f && _currentSwipe.y < 0.5f)

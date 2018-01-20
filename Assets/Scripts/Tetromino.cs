@@ -1,23 +1,22 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class TetrominoMovement : MonoBehaviour
+    public class Tetromino : MonoBehaviour
     {
+
         #region private properties
 
-        private bool _isActive = false;
-
-        private bool _freeze => transform.position.y <= 1;
-
+        private float _fall = 0;
 
         #endregion
 
         #region public properties
+        
+        public float FallSpeed = 1;
 
-        public float Delay = 0;
-        public float StepTime = 1;
         #endregion
 
 
@@ -27,15 +26,9 @@ namespace Assets.Scripts
         {
         }
 
-        private IEnumerator Start()
+        private void Start()
         {
-            while (isActiveAndEnabled && !_freeze)
-            {
-                _isActive = true;
-                yield return new WaitForSeconds(.5f);
-                MoveBlockDown();
-            }
-            _isActive = false;
+
         }
 
         private void OnEnable()
@@ -45,7 +38,7 @@ namespace Assets.Scripts
             EventManager.StartListening(Constants.SwipeEvents.SwipeDown, SwipeUp);
             EventManager.StartListening(Constants.SwipeEvents.SwipeUp, SwipeDown);
         }
-        
+
         private void OnDisable()
         {
             EventManager.StopListening(Constants.SwipeEvents.SwipeRight, SwipeRight);
@@ -61,7 +54,12 @@ namespace Assets.Scripts
 
         private void Update()
         {
+            if(Time.time - _fall >=FallSpeed)
+            {
+                transform.position += Vector3.down;
 
+                _fall = Time.time;
+            }
         }
 
         #endregion
@@ -71,29 +69,27 @@ namespace Assets.Scripts
 
         private void SwipeRight()
         {
-            if(transform.position.x < 10 && !_freeze)
-                transform.position += Vector3.right;
+            transform.position += Vector3.right;
         }
 
         private void SwipeDown()
         {
-            
+            transform.position += Vector3.down;
         }
 
         private void SwipeUp()
         {
-            
+            transform.Rotate(0, 0, 90);
         }
 
         private void SwipeLeft()
         {
-            if (transform.position.x > 1 && !_freeze)
-                transform.position += Vector3.left;
+            transform.position += Vector3.left;
         }
 
         #endregion
 
-        
+
         #region helpers
 
         private void MoveBlockDown()
@@ -102,12 +98,5 @@ namespace Assets.Scripts
         }
 
         #endregion
-
-
-
-
-
-
-        
     }
 }
