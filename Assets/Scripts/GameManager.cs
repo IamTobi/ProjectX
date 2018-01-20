@@ -3,7 +3,7 @@
 namespace Assets.Scripts
 {
     /// <summary>
-    /// GameManager used for Initialisation and keeping Track of score and positions
+    /// GameManager used for initialization and keeping track of score and positions, and spawning tetrominos
     /// </summary>
     public class GameManager : MonoBehaviour {
         

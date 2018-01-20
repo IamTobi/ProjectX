@@ -52,25 +52,23 @@ namespace Assets.Scripts
         }
 
         #endregion
-
-
+        
         #region update
 
         private void Update()
         {
-            if(Time.time - _fall >=FallSpeed && CheckIsValidPosition())
+            if(Time.time - _fall >=FallSpeed)
             {
                 transform.position += Vector3.down;
+                
+                ControlPosition(MovementDirection.Down);
 
                 _fall = Time.time;
-
-                ControlPosition(MovementDirection.Down);
             }
         }
 
         #endregion
-
-
+        
         #region events
 
         private void SwipeRight()
@@ -101,7 +99,11 @@ namespace Assets.Scripts
                     transform.Rotate(0,0,90);
                 }
 
-                if (!CheckIsValidPosition())
+                if (CheckIsValidPosition())
+                {
+                    GridController.Instance.UpdateGrid(this);
+                }
+                else
                 {
                     if (LimitRotation)
                     {
@@ -109,7 +111,7 @@ namespace Assets.Scripts
                     }
                     else
                     {
-                        transform.Rotate(0,0,-90);
+                        transform.Rotate(0, 0, -90);
                     }
                 }
                 
@@ -123,12 +125,14 @@ namespace Assets.Scripts
         }
 
         #endregion
-
-
-
+        
         private void ControlPosition(MovementDirection lastMovement)
         {
-            if (CheckIsValidPosition()) return;
+            if (CheckIsValidPosition())
+            {
+                GridController.Instance.UpdateGrid(this);
+                return;
+            }
 
             switch (lastMovement)
             {
@@ -158,6 +162,21 @@ namespace Assets.Scripts
                 {
                     return false;
                 }
+                try
+                {
+
+                    if (GridController.Instance.GetTransformAtGridPosition(mino.position) != null
+                        && GridController.Instance.GetTransformAtGridPosition(pos).parent != transform)
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
             }
             
             return true;

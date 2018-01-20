@@ -16,9 +16,11 @@ namespace Assets.Scripts
         #region properties / attributes
         public static int GridHeight = 20;
         public static int GridWidth = 10;
+
+        public Transform[,] Grid = new Transform[GridWidth, GridHeight];
+
         #endregion
-
-
+        
         #region start
 
         private void Awake()
@@ -40,6 +42,7 @@ namespace Assets.Scripts
 
         }
         #endregion
+
         #region update
 
         #endregion
@@ -54,5 +57,43 @@ namespace Assets.Scripts
             return new Vector2(Mathf.Round(pos.x), Mathf.Round(pos.y)); 
         }
 
+        public void UpdateGrid(Tetromino tetromino)
+        {
+            for (int y = 0; y < GridHeight; y++)
+            {
+                for (int x = 0; x < GridWidth; x++)
+                {
+                    if(Grid[x,y] != null)
+                    {
+                        if(Grid[x,y].parent == tetromino.transform)
+                        {
+                            Grid[x, y] = null;
+                        }
+                    }
+                }
+            }
+
+            foreach (Transform mino in tetromino.transform)
+            {
+                var pos = Round(mino.position);
+
+                if(pos.y <GridHeight)
+                {
+                    Grid[(int)pos.x, (int)pos.y] = mino;
+                }
+            }
+        }
+
+        public Transform GetTransformAtGridPosition(Vector2 pos)
+        {
+            if(pos.y > GridHeight -1)
+            {
+                return null;
+            }
+            else
+            {
+                return Grid[(int)pos.x, (int)pos.y];
+            }
+        }
     }
 }
