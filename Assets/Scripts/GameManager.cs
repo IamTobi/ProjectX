@@ -17,6 +17,7 @@ namespace Assets.Scripts
             get { return _instance; }
         }
 
+        // Spawner position
         public Transform StartingPosition;
 
 
