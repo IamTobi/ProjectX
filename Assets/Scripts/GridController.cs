@@ -23,6 +23,8 @@ namespace Assets.Scripts
 
         private void Awake()
         {
+            DontDestroyOnLoad(transform.gameObject);
+
             if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);
@@ -31,6 +33,7 @@ namespace Assets.Scripts
             {
                 _instance = this;
             }
+            
         }
 
         private void Start()

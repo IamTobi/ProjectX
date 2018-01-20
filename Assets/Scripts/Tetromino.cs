@@ -7,6 +7,14 @@ namespace Assets.Scripts
 {
     public class Tetromino : MonoBehaviour
     {
+        #region properties / attributes
+        public float FallSpeed = 1;
+        public bool AllowRotation = true;
+        public bool LimitRotation = false;
+
+
+        private Vector3 _limitedRotationVector => transform.rotation.eulerAngles.z >= 90 ? new Vector3(0, 0, -90) : new Vector3(0, 0, 90);
+        private float _fall = 0;
         private enum MovementDirection
         {
             Left,
@@ -14,21 +22,8 @@ namespace Assets.Scripts
             Right,
             Down
         }
-
-
-        #region private properties
-
-        private float _fall = 0;
-
         #endregion
-
-        #region public properties
         
-        public float FallSpeed = 1;
-
-        #endregion
-
-
         #region init
 
         private void Awake()
@@ -63,11 +58,13 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            if(Time.time - _fall >=FallSpeed)
+            if(Time.time - _fall >=FallSpeed && CheckIsValidPosition())
             {
                 transform.position += Vector3.down;
 
                 _fall = Time.time;
+
+                ControlPosition(MovementDirection.Down);
             }
         }
 
@@ -87,11 +84,36 @@ namespace Assets.Scripts
         private void SwipeDown()
         {
             transform.position += Vector3.down;
+
+            ControlPosition(MovementDirection.Down);
         }
 
         private void SwipeUp()
         {
-            transform.Rotate(0, 0, 90);
+            if(AllowRotation)
+            {
+                if (LimitRotation)
+                {
+                    transform.Rotate(_limitedRotationVector);
+                }
+                else
+                {
+                    transform.Rotate(0,0,90);
+                }
+
+                if (!CheckIsValidPosition())
+                {
+                    if (LimitRotation)
+                    {
+                        transform.Rotate(_limitedRotationVector);
+                    }
+                    else
+                    {
+                        transform.Rotate(0,0,-90);
+                    }
+                }
+                
+            }
         }
 
         private void SwipeLeft()
@@ -116,6 +138,9 @@ namespace Assets.Scripts
                 case MovementDirection.Left:
                     transform.position += Vector3.right;
                     break;
+                case MovementDirection.Down:
+                    transform.position += Vector3.up;
+                    break;
                 default:
                     break;
             }
@@ -132,7 +157,7 @@ namespace Assets.Scripts
                     return false;
                 }
             }
-
+            
             return true;
         }
     }
