@@ -9,5 +9,10 @@
             public const string SwipeUp = "swipeUp";
             public const string SwipeDown = "swipeDown";
         }
+
+        public static class Tetrominos
+        {
+            public const string Identifier = "Tetromino";
+        }
     }
 }

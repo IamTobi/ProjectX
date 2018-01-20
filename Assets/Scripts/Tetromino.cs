@@ -140,6 +140,8 @@ namespace Assets.Scripts
                     break;
                 case MovementDirection.Down:
                     transform.position += Vector3.up;
+                    enabled = false;
+                    GameManager.Instance.SpawnNextTetromino();
                     break;
                 default:
                     break;

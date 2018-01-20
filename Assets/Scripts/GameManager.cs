@@ -7,13 +7,42 @@ namespace Assets.Scripts
     /// </summary>
     public class GameManager : MonoBehaviour {
         
+        /// <summary>
+        /// Singleton Implementation
+        /// </summary>
+        private static GameManager _instance;
 
-        // Use this for initialization
-        void Start () {
-	
+        public static GameManager Instance
+        {
+            get { return _instance; }
         }
-	
-        // Update is called once per frame
+
+        public Transform StartingPosition;
+
+
+        void Start()
+        {
+            DontDestroyOnLoad(transform.gameObject);
+
+            if (_instance != null && _instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                _instance = this;
+            }
+
+            SpawnNextTetromino();
+        }
+
+        public void SpawnNextTetromino()
+        {
+            var objectToSpawn = ObjectPooler.SharedInstance.GetRandomPooledObject(Constants.Tetrominos.Identifier);
+            objectToSpawn.transform.position = StartingPosition.position;
+            objectToSpawn.SetActive(true);
+        }
+        
         void Update () {
 	
         }

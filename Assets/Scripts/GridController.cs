@@ -33,7 +33,6 @@ namespace Assets.Scripts
             {
                 _instance = this;
             }
-            
         }
 
         private void Start()
