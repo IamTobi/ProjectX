@@ -49,7 +49,7 @@ namespace Assets.Scripts
 
         public Vector2 Round(Vector2 pos)
         {
-            return new Vector2(Mathf.Round(pos.x), Mathf.Round(pos.y));
+            return new Vector2(Mathf.Round(pos.x), Mathf.Round(pos.y)); 
         }
 
     }
