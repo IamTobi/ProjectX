@@ -13,6 +13,7 @@
         public static class Tetrominos
         {
             public const string Identifier = "Tetromino";
+            public const string Block = "Block";
         }
     }
 }
