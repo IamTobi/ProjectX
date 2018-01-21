@@ -2,17 +2,37 @@
 
 namespace Assets.Scripts
 {
+    public enum InputMethod
+    {
+        Keyboard,
+        Touch,
+        Mouse
+    }
+
     public class SwipeController : MonoBehaviour
     {
         private Vector2 _currentSwipe;
 
         private Vector2 _firstPressPosition;
         private Vector2 _secondPressPosition;
+
+        public InputMethod InputType;
         
         private void Update()
         {
-            GetTouchSwipe();
-            GetMouseSwipe();
+            switch (InputType)
+            {
+                case InputMethod.Keyboard:
+                    break;
+                case InputMethod.Touch:
+                    GetTouchSwipe();
+                    break;
+                case InputMethod.Mouse:
+                    GetMouseSwipe();
+                    break;
+                default:
+                    break;
+            }
 
         }
 
